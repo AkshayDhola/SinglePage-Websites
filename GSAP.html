@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        section {
+            display: flex;
+            background-color: black;
+            color: white;
+        }
+        
+        span {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        #menu {
+            width: 3%;
+            height: 100%;
+            writing-mode: vertical-lr;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            align-items: center;
+        }
+        
+        .big {
+            width: 1000px;
+            height: 1000px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgb(23, 85, 85), rgba(0, 0, 0, 1));
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .mid {
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgb(44, 150, 114), rgba(0, 0, 0, 1));
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .small {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.9);
+            position: absolute;
+            left: 52%;
+            top: 60%;
+            transform: translate(-50%, -50%);
+        }
+        
+        #lower {
+            z-index: 9;
+            width: 90%;
+            height: 100vh;
+            position: absolute;
+            overflow: hidden;
+        }
+        
+        #upper {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            z-index: 99;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .main {
+            display: flex;
+        }
+        
+        .main .n {
+            height: 34vh;
+            width: 16vw;
+            display: flex;
+            justify-content: start;
+            text-align: center;
+            flex-direction: column;
+            margin-left: -4rem;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+        
+        .n::-webkit-scrollbar,
+        .content::-webkit-scrollbar,
+        .second::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .main .n h1 {
+            font-size: 15vw;
+            font-weight: 400;
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: column;
+            height: 23vh;
+            width: 32vw;
+            justify-content: start;
+            text-align: left;
+            margin-top: 4rem;
+            padding-top: 1rem;
+            margin-left: 2rem;
+            font-weight: lighter;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+        
+        .second {
+            width: 250px;
+            height: 144px;
+            margin-top: 1rem;
+            margin-left: 72%;
+            padding-top: 1rem;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+        
+        .second h6 {
+            line-height: 23px;
+        }
+        
+        #midd {
+            position: absolute;
+            z-index: 99;
+            width: 91vw;
+            height: 100vh;
+            background: linear-gradient(145deg, rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 1) 70%);
+        }
+        
+        #s1 {
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="s1">
+        <div style="width: 97%; height: 100%;">
+            <div class="container-fluid">
+                <div class="row" id="lower">
+                    <div class="big"></div>
+                    <div class="mid"></div>
+                    <div class="small"></div>
+                </div>
+                <div class="row" id="midd">
+                </div>
+                <div class="row" id="upper">
+                    <div class="main">
+                        <div class="n">
+                            <h1>01</h1>
+                            <h1>02</h1>
+                            <h1>03</h1>
+                        </div>
+                        <div class="content">
+                            <h2>Advancing our <br> understanding of the <br> universe</h2>
+                            <br>
+                            <h2>Inspiring and motivating <br> science students through <br> open exchibitions</h2>
+                            <br>
+                            <h2>Pushing space technology <br> forward with a group of <br> bright,talented scientists</h2>
+                        </div>
+                    </div>
+                    <div class="second">
+                        <h6>We are increasing science and technology literacy by inspiring youth to pursue science- teachnology education and career opportunities.</h6>
+                        <br>
+                        <h6>Over the years the Institute has created a number of both offline and online exhibits on space science.</h6>
+                        <br>
+                        <h6>We constantly expand investigation and growth in the fields of earth science,space & planetary physics</h6>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="menu" class="pt-5 pb-5">
+            <h6>EVENTS </h6>
+            <span id="btn"></span>
+            <h6>ABOUT</h6>
+            <span id="btn"></span>
+            <h6>CONTACT</h6>
+            <span id="btn"></span>
+            <h6> EVENTS</h6>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" referrerpolicy="no-referrer"></script>
+    <script>
+        var b = document.querySelectorAll("#btn");
+        var tl = gsap.timeline();
+        b.forEach(function(val, index) {
+            val.addEventListener("click", function() {
+                if (index == 1) {
+                    gsap.to(".mid", {
+                        scale: 2,
+                        x: -160,
+                        duration: 2
+                    })
+                    gsap.to(".small", {
+                        x: -250,
+                        scale: 2.5,
+                        y: -100,
+                        duration: 2
+                    })
+                }
+                if (index == 2) {
+                    gsap.to(".small", {
+                        scale: 1.5,
+                        duration: 2,
+                        x: -440
+                    })
+                    gsap.to(".mid", {
+                        scale: 0.5,
+                        x: 270,
+                        duration: 2
+                    })
+                    gsap.to(".big", {
+                        scale: 0.5,
+                        duration: 2
+                    })
+                }
+                gsap.to(".n h1", {
+                    y: -251 * index,
+                    duration: 2,
+                    ease: Elastic.easeOut,
+                    // ease: Bounce.easeOut,
+                    scrub: 3
+                })
+                gsap.to(".content h2", {
+                    y: -145 * index,
+                    duration: 2,
+                    opacity: 0.8,
+                    ease: Elastic.easeOut,
+                    // ease: Bounce.easeOut,
+                    scrub: 3
+                })
+                gsap.to(".second h6", {
+                    y: -140 * index,
+                    duration: 2,
+                    opacity: 0.8,
+                    ease: Elastic.easeOut,
+                    // ease: Bounce.easeOut,
+                    scrub: 3
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

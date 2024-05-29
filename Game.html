@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+    <style>
+        .bob {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgb(185, 233, 185);
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: large;
+            font-weight: 800;
+        }
+        
+        .bob:hover {
+            cursor: pointer;
+            background-color: rgb(102, 224, 102);
+        }
+        
+        #j {
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #reset {
+            background-color: #99BC85;
+            border-radius: 5px;
+            padding: 5px 15px;
+            font-size: larger;
+            font-weight: 500;
+        }
+        
+        #reset:hover {
+            background-color: #89af71;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-full h-screen bg-[#E1F0DA] flex justify-center items-center">
+        <div class="w-[80%] h-[80%] rounded-xl overflow-hidden">
+            <div class="w-full h-16 bg-[#99BC85] flex justify-center items-center gap-16">
+                <div class="flex items-center justify-between gap-4">
+                    <h4 class="text-2xl ">Hit</h4>
+                    <div class="w-[40px] h-[40px] bg-[#E1F0DA] rounded-lg flex justify-center items-center text-2xl" id="hit">7</div>
+                </div>
+                <div class="flex items-center justify-between gap-4">
+                    <h4 class="text-2xl">Timer</h4>
+                    <div class="w-[40px] h-[40px] bg-[#E1F0DA] rounded-lg flex justify-center items-center text-2xl" id="t">60</div>
+                </div>
+                <div class="flex items-center justify-between gap-4">
+                    <h4 class="text-2xl">Score</h4>
+                    <div class="w-[60px] h-[40px] bg-[#E1F0DA] rounded-lg flex justify-center items-center text-2xl" id="s">0</div>
+                </div>
+            </div>
+            <div class="w-full h-screen p-4 flex gap-4 flex-wrap bg-[#BFD8AF]" id="j">
+            </div>
+        </div>
+    </div>
+    <script>
+        var timer = 60,
+            score = 0,
+            n = 0;
+
+        function increase() {
+            score += 10;
+            document.querySelector("#s").textContent = score;
+        }
+
+        function insertbob() {
+            var clutter = "";
+            for (let i = 0; i <= 100; i++) {
+                clutter += `<div class="bob">${Math.floor(Math.random()*10)}</div>`
+            }
+            document.querySelector("#j").innerHTML = clutter;
+        }
+
+        function hit() {
+            n = Math.floor(Math.random() * 10);
+            document.querySelector("#hit").textContent = n;
+        }
+
+        function runtime() {
+            var time = setInterval(function() {
+                if (timer > 0) {
+                    timer--;
+                    document.querySelector("#t").textContent = timer;
+                } else {
+                    clearInterval(time);
+                    let reset = `<div class="w-[50%] justify-center flex flex-col items-center"><h1 class="text-[#99BC85] text-8xl mb-8">Game Over!</h1><button id="reset" onclick="re()">Reset</button></div>`
+                    document.querySelector("#j").innerHTML = reset;
+                }
+            }, 1000)
+        }
+
+        function re() {
+            location.reload();
+        }
+        document.querySelector("#j").addEventListener("click", function(dets) {
+            var clicked = Number(dets.target.textContent);
+            if (clicked === n) {
+                increase();
+                hit();
+                insertbob();
+            }
+        })
+        runtime();
+        hit();
+        insertbob();
+    </script>
+</body>
+
+</html>
